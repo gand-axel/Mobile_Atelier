@@ -1,12 +1,11 @@
 <template>
 	<Page>
         <ActionBar title="Ajouter une nouvelle série">
-            <NavigationButton text="Go back" android.systemIcon="ic_menu_back" @tap="goBack" />
+            <NavigationButton text="Retour" android.systemIcon="ic_menu_back" @tap="goBack" />
         </ActionBar>
 		<FlexboxLayout class="page">
 			<StackLayout class="form">
-				<!-- <Image class="logo" src="~/images/logo.png" /> -->
-				<Label class="header" text="Geoquizz" />
+				<Label class="header" text="Serie" />
 
 				<StackLayout class="input-field" marginBottom="25">
 					<TextField class="input" hint="Ville" autocorrect="false" autocapitalizationType="none" v-model="ville"
@@ -33,53 +32,24 @@
 </template>
 
 <script>
+import Home from "./Home";
+
 import axios from "axios";
 
 export default {
+	components: { Home },
+	props: ['token'],
     data() {
         return {
             ville: null,
             mapRef: null,
             dist: null,
-            bghttp: require("nativescript-background-http"),
-            url: "",
-            session: null
+            url: "https://9953a35f.ngrok.io/series",
         };
     },
     methods: {
-        submit(){
-            axios({
-                method: "get",
-                url: "http://f536c7ec.ngrok.io/series",
-                /* headers: { "Content-Type": "application/json" },
-                body: {
-                    ville: this.ville,
-                    mapRef: this.mapRef,
-                    dist: this.dist
-                } */
-            })
-            .then(result => {
-                console.log(result.data);
-            })
-            .catch(err => {
-                console.error(err.response.request._response);
-            });
-
-            /* this.url = "http://f536c7ec.ngrok.io/series";
-            this.session = bghttp.session("post-series");
-
-            let request = {
-                url: this.url,
-                method: "GET"
-            };
-
-            let params = [
-                { name: "ville", value: this.ville },
-                { name: "mapRef", value: this.mapRef },
-                { name: "dist", value: this.dist }
-            ];
-
-            let task = session.multipartUpload(params, request); */
+        goBack() {
+            this.$navigateTo(Home);
         },
         focusMapRef() {
             this.$refs.mapRef.nativeView.focus();
@@ -87,70 +57,38 @@ export default {
         focusDist() {
             this.$refs.dist.nativeView.focus();
         },
-        goBack() {
-            this.$navigateBack();
+        submit(){
+            axios({
+                method: "post",
+                url: this.url,
+                headers: { 
+					"Content-Type": "application/json",
+					"Authorization": "Bearer " + this.token
+				},
+                data: {
+                    ville: this.ville,
+                    mapRef: this.mapRef,
+                    dist: this.dist
+                }
+            })
+            .then(result => {
+                console.log(result.data);
+                alert({
+                	title: "Série",
+                	okButtonText: "OK",
+					message: "Votre série a été ajouté avec succès"
+                });
+                this.goBack();
+            })
+            .catch(err => {
+                console.error(err.response.request._response);
+                alert({
+                	title: "Série",
+                	okButtonText: "OK",
+					message: "Une erreur s'est produite"
+                });
+            });
         }
     }
 };
 </script>
-
-<style scoped>
-	.page {
-		align-items: center;
-		flex-direction: column;
-	}
-
-	.form {
-		margin-left: 30;
-		margin-right: 30;
-		flex-grow: 2;
-		vertical-align: middle;
-	}
-
-	.header {
-		horizontal-align: center;
-		font-size: 25;
-		font-weight: 600;
-		margin-bottom: 70;
-		text-align: center;
-        /* color: #D51A1A; */
-        color: gold;
-	}
-
-	.input-field {
-		margin-bottom: 25;
-	}
-
-	.input {
-		font-size: 18;
-		placeholder-color: #A8A8A8;
-	}
-
-	.input-field .input {
-		font-size: 54;
-	}
-
-	.btn-primary {
-		height: 50;
-		margin: 30 5 15 5;
-        /* background-color: #D51A1A; */
-        background-color: gold;
-		border-radius: 5;
-		font-size: 20;
-		font-weight: 600;
-	}
-
-	.login-label {
-		horizontal-align: center;
-		color: #A8A8A8;
-		font-size: 16;
-	}
-
-	.sign-up-label {
-		margin-bottom: 20;
-	}
-
-	.bold {
-		color: #000000;
-	}
-</style>

@@ -2,55 +2,63 @@
     <Page>
         <ActionBar title="GeoQuizz"/>
         <StackLayout>
-			<Button text="Créer une série" @tap="create" />
-			<Button text="Choisir une série" @tap="choose" />
-			<Button text="Location" @tap="loc" />
-			<Button text="Pos" @tap="pos" />
-			<Button text="Form" @tap="form" />
+			<Image class="logo" src="~/images/logo.png" />
+			<Label class="header" text="Bienvenue sur GeoQuizz !" style="margin-top: 30;" />
+			<Button text="Ajouter une série" @tap="serie" style="background-color: gold;" />
+			<Button text="Ajouter une photo" @tap="photo" style="background-color: gold;" />
         </StackLayout>
     </Page>
 </template>
 
 <script>
 	import Serie from "./Serie";
-	import Location from "./Location";
-	import Form from "./Form";
-
-	import * as geolocation from "nativescript-geolocation";
-    import { Accuracy } from "tns-core-modules/ui/enums";
+	import Photo from "./Photo";
+	
+	import axios from "axios";
 
     export default {
-        components: { Serie, Location, Form },
+		components: { Serie, Photo},
+		props: ['token'],
+		data() {
+			return {
+				url: "https://9953a35f.ngrok.io/series",
+				series: []
+			};
+		},
         methods: {
-            create(args) {
-              this.$navigateTo(Serie);
+            serie(args) {
+              	this.$navigateTo(Serie, {
+                  	props: {
+                      	token: this.token
+					}
+			  	});
 			},
-			loc(args) {
-              this.$navigateTo(Location);
-			},
-			form(args) {
-              this.$navigateTo(Form);
-			},
-			pos: function() {
-                geolocation.getCurrentLocation({
-                    desiredAccuracy: Accuracy.high,
-                    maximumAge: 5000,
-                    timeout: 10000
-                }).then(function (loc) {
-                    if (loc) {
-                        return alert({
-                			title: "Localisation",
-                			okButtonText: "OK",
-							message: loc.latitude + ', ' + loc.longitude
-            			});
-                    }
-                }, function (e) {
-                    console.log("Error: " + (e.message || e));
-                });
-            }
-            //create(args) {
-              //this.$navigateTo(Serie);
-            //}
-        }
+			photo(args) {
+              	this.$navigateTo(Photo, {
+                  	props: {
+						series: this.series,
+						token: this.token
+                  	}
+              	});
+			}
+        },
+		created: function() {
+			axios({
+				method: "get",
+				url: this.url,
+				headers: {
+					"Authorization": "Bearer " + this.token
+                }
+			})
+			.then(result => {
+				result.data.series.forEach(serie => {
+					this.series.push({id: serie.serie.idSerie, ville: serie.serie.ville});
+					console.log(this.series);
+				});
+			})
+			.catch(err => {
+				console.error(err.response.request._response);
+			});
+		}
     };
 </script>

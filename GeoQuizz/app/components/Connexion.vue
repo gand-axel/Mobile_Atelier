@@ -33,7 +33,7 @@ export default {
         return {
             mail: null,
             pass: null,
-            url: "https://b0a9ea35.ngrok.io/joueurs/auth",
+            url: "https://36aeab0a.ngrok.io/joueurs/auth",
             auth: null,
             token: null
         };

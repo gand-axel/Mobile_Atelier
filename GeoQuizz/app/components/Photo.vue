@@ -71,7 +71,7 @@ export default {
             uploaded_image: null,
             urlImage: "",
 
-            urlAPI: "https://b0a9ea35.ngrok.io/photos"
+            urlAPI: "https://36aeab0a.ngrok.io/photos"
         };
     },
     methods: {

@@ -1,10 +1,10 @@
 {
   "nativescript": {
     "id": "org.nativescript.GeoQuizz",
-    "tns-ios": {
+    "tns-android": {
       "version": "6.5.0"
     },
-    "tns-android": {
+    "tns-ios": {
       "version": "6.5.0"
     }
   },
@@ -19,13 +19,13 @@
     "nativescript-geolocation": "^5.1.0",
     "nativescript-imagepicker": "^7.1.0",
     "nativescript-vue": "~2.4.0",
-    "tns-core-modules": "6.6.0-next-2020-03-20-102016-01"
+    "tns-core-modules": "~6.3.0"
   },
   "devDependencies": {
     "@babel/core": "~7.1.0",
     "@babel/preset-env": "~7.1.0",
     "babel-loader": "~8.0.0",
-    "nativescript-dev-webpack": "1.5.0-next-2020-02-05-100352-01",
+    "nativescript-dev-webpack": "~1.4.0",
     "nativescript-vue-template-compiler": "~2.4.0",
     "node-sass": "^4.7.1",
     "vue-loader": "~15.4.0"

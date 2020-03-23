@@ -12,7 +12,7 @@
                     <StackLayout class="hr-light" />
 				</StackLayout>
 
-                <Label text="Choisir une série :" fontSize="18" />
+                <Label text="Choisir une ville :" fontSize="18" />
                 <ListPicker :items=tabSerieVille v-model="number"/>
 
                 <Button v-if="!pos" text="Récupérer sa position" @tap="takePosition" fontSize="18" style="background-color: gold;" />
@@ -71,7 +71,7 @@ export default {
             uploaded_image: null,
             urlImage: "",
 
-            urlAPI: "https://9953a35f.ngrok.io/photos"
+            urlAPI: "https://b0a9ea35.ngrok.io/photos"
         };
     },
     methods: {
@@ -241,7 +241,7 @@ export default {
             });
         }
     },
-    mounted: function() {
+    created: function() {
         this.series.forEach(serie => {
             this.tabSerieId.push(serie.id);
             this.tabSerieVille.push(serie.ville);

@@ -21,7 +21,7 @@
 		props: ['token'],
 		data() {
 			return {
-				url: "https://9953a35f.ngrok.io/series",
+				url: "https://b0a9ea35.ngrok.io/series",
 				series: []
 			};
 		},

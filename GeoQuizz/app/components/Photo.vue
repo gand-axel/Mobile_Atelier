@@ -71,7 +71,7 @@ export default {
             uploaded_image: null,
             urlImage: "",
 
-            urlAPI: "https://36aeab0a.ngrok.io/photos"
+            urlAPI: "https://c7edab98.ngrok.io/photos"
         };
     },
     methods: {
@@ -165,6 +165,11 @@ export default {
             this.urlImage = this.result.data.url;
             this.picture = true;
 
+            alert({
+                title: "Photo",
+                okButtonText: "OK",
+				message: "Votre photo a bien été selectionné"
+            });
             console.log("La photo a bien été envoyé sur imgBB");
         },
         takePicture() {
@@ -245,8 +250,6 @@ export default {
         this.series.forEach(serie => {
             this.tabSerieId.push(serie.id);
             this.tabSerieVille.push(serie.ville);
-            console.log(this.tabSerieId);
-            console.log(this.tabSerieVille);
         });
     }
 };

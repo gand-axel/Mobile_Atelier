@@ -8,20 +8,22 @@
 				<Label class="header" text="Serie" />
 
 				<StackLayout class="input-field" marginBottom="25">
-					<TextField class="input" hint="Ville" autocorrect="false" autocapitalizationType="none" v-model="ville"
-					 returnKeyType="next" @returnPress="focusMapRef" fontSize="18" />
+					<TextField class="input" hint="Ville" autocorrect="false" autocapitalizationType="none" v-model="ville" returnKeyType="next" @returnPress="focusLat" fontSize="18" />
 					<StackLayout class="hr-light" />
 				</StackLayout>
 
 				<StackLayout class="input-field" marginBottom="25">
-					<TextField ref="mapRef" class="input" hint="Référence de la carte" autocorrect="false" autocapitalizationType="none" v-model="mapRef"
-					 returnKeyType="next" @returnPress="focusDist" fontSize="18" />
+					<TextField ref="latitude" class="input" hint="Latitude de la ville" autocorrect="false" autocapitalizationType="none" v-model="latitude" returnKeyType="next" @returnPress="focusLng" fontSize="18" />
 					<StackLayout class="hr-light" />
 				</StackLayout>
 
                 <StackLayout class="input-field" marginBottom="25">
-					<TextField ref="dist" class="input" hint="Distance" keyboardType="number" autocorrect="false" autocapitalizationType="none" v-model="dist"
-					 returnKeyType="done" fontSize="18" />
+					<TextField ref="longitude" class="input" hint="Longitude de la ville" autocorrect="false" autocapitalizationType="none" v-model="longitude" returnKeyType="next" @returnPress="focusDist" fontSize="18" />
+					<StackLayout class="hr-light" />
+				</StackLayout>
+
+                <StackLayout class="input-field" marginBottom="25">
+					<TextField ref="dist" class="input" hint="Distance" keyboardType="number" autocorrect="false" autocapitalizationType="none" v-model="dist" returnKeyType="done" fontSize="18" />
 					<StackLayout class="hr-light" />
 				</StackLayout>
 
@@ -42,17 +44,21 @@ export default {
     data() {
         return {
             ville: null,
-            mapRef: null,
+            latitude: null,
+            longitude: null,
             dist: null,
-            url: "https://36aeab0a.ngrok.io/series",
+            url: "https://c7edab98.ngrok.io/series",
         };
     },
     methods: {
         goBack() {
             this.$navigateTo(Home);
         },
-        focusMapRef() {
-            this.$refs.mapRef.nativeView.focus();
+        focusLat() {
+            this.$refs.latitude.nativeView.focus();
+        },
+        focusLng() {
+            this.$refs.longitude.nativeView.focus();
         },
         focusDist() {
             this.$refs.dist.nativeView.focus();
@@ -62,30 +68,32 @@ export default {
                 method: "post",
                 url: this.url,
                 headers: { 
-					"Content-Type": "application/json",
-					"Authorization": "Bearer " + this.token
-				},
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + this.token
+                },
                 data: {
                     ville: this.ville,
-                    mapRef: this.mapRef,
+                    latitude: this.latitude,
+                    longitude: this.longitude,
+                    zoom: 12,
                     dist: this.dist
                 }
             })
             .then(result => {
                 console.log(result.data);
                 alert({
-                	title: "Série",
-                	okButtonText: "OK",
-					message: "Votre série a été ajouté avec succès"
+                    title: "Série",
+                    okButtonText: "OK",
+                    message: "Votre série a été ajouté avec succès"
                 });
                 this.goBack();
             })
             .catch(err => {
                 console.error(err.response.request._response);
                 alert({
-                	title: "Série",
-                	okButtonText: "OK",
-					message: "Une erreur s'est produite"
+                    title: "Série",
+                    okButtonText: "OK",
+                    message: "Une erreur s'est produite"
                 });
             });
         }

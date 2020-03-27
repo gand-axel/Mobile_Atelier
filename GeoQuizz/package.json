@@ -3,6 +3,9 @@
     "id": "org.nativescript.GeoQuizz",
     "tns-ios": {
       "version": "6.5.0"
+    },
+    "tns-android": {
+      "version": "6.5.0"
     }
   },
   "description": "NativeScript Application",

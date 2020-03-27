@@ -18,6 +18,7 @@ Exécutez les commandes suivantes dans le dossier GeoQuizz (la 1ère possibilit�
 # Pour installer les dépendances
 tns preview
 ```
+Puis scannez le QR Code.
 
 > 2ème possibilité :
 

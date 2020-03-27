@@ -12,7 +12,7 @@ Assurez-vous que le docker fonctionne.
 
 Exécutez les commandes suivantes dans le dossier GeoQuizz (la 1ère possibilité est fortement conseillé) :
 
-> 1ère possibilité :
+1. 1ère possibilité :
 
 ``` bash
 # Pour installer les dépendances
@@ -20,7 +20,7 @@ tns preview
 ```
 Puis scannez le QR Code.
 
-> 2ème possibilité :
+2. 2ème possibilité :
 
 ``` bash
 # Pour installer les dépendances

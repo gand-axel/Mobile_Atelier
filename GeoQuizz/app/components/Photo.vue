@@ -28,6 +28,8 @@
 </template>
 
 <script>
+import Home from "./Home";
+
 import axios from "axios";
 import * as geolocation from "nativescript-geolocation";
 import { Accuracy } from "tns-core-modules/ui/enums";
@@ -39,6 +41,7 @@ import { Image } from "tns-core-modules/ui/image";
 import { isAndroid, isIOS } from "tns-core-modules/platform";
 
 export default {
+    components: { Home },
     props: ['series', 'token'],
     data() {
         return {
@@ -71,12 +74,16 @@ export default {
             uploaded_image: null,
             urlImage: "",
 
-            urlAPI: "https://c7edab98.ngrok.io/photos"
+            urlAPI: "http://localhost:19180/photos"
         };
     },
     methods: {
         goBack() {
-            this.$navigateBack();
+            this.$navigateTo(Home, {
+                props: {
+                    token: this.token
+                }
+            });
         },
         takePosition() {
             geolocation.getCurrentLocation({

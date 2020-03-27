@@ -13,12 +13,12 @@
 				</StackLayout>
 
 				<StackLayout class="input-field" marginBottom="25">
-					<TextField ref="latitude" class="input" hint="Latitude de la ville" autocorrect="false" autocapitalizationType="none" v-model="latitude" returnKeyType="next" @returnPress="focusLng" fontSize="18" />
+					<TextField ref="latitude" class="input" hint="Latitude ville (ex: 48.45236)" autocorrect="false" autocapitalizationType="none" v-model="latitude" returnKeyType="next" @returnPress="focusLng" fontSize="18" />
 					<StackLayout class="hr-light" />
 				</StackLayout>
 
                 <StackLayout class="input-field" marginBottom="25">
-					<TextField ref="longitude" class="input" hint="Longitude de la ville" autocorrect="false" autocapitalizationType="none" v-model="longitude" returnKeyType="next" @returnPress="focusDist" fontSize="18" />
+					<TextField ref="longitude" class="input" hint="Longitude ville (ex: 9.78536)" autocorrect="false" autocapitalizationType="none" v-model="longitude" returnKeyType="next" @returnPress="focusDist" fontSize="18" />
 					<StackLayout class="hr-light" />
 				</StackLayout>
 
@@ -47,12 +47,16 @@ export default {
             latitude: null,
             longitude: null,
             dist: null,
-            url: "https://c7edab98.ngrok.io/series",
+            url: "http://localhost:19180/series",
         };
     },
     methods: {
         goBack() {
-            this.$navigateTo(Home);
+            this.$navigateTo(Home, {
+                props: {
+                    token: this.token
+                }
+            });
         },
         focusLat() {
             this.$refs.latitude.nativeView.focus();

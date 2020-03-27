@@ -33,7 +33,7 @@ export default {
         return {
             mail: null,
             pass: null,
-            url: "http://localhost:19180/joueurs/auth",
+            url: "https://docketu.iutnc.univ-lorraine.fr:60180/joueurs/auth",
             auth: null,
             token: null
         };

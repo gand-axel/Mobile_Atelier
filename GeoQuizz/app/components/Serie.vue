@@ -47,7 +47,7 @@ export default {
             latitude: null,
             longitude: null,
             dist: null,
-            url: "http://localhost:19180/series",
+            url: "https://docketu.iutnc.univ-lorraine.fr:60180/series",
         };
     },
     methods: {

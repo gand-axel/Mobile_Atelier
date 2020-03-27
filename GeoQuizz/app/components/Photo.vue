@@ -74,7 +74,7 @@ export default {
             uploaded_image: null,
             urlImage: "",
 
-            urlAPI: "http://localhost:19180/photos"
+            urlAPI: "https://docketu.iutnc.univ-lorraine.fr:60180/photos"
         };
     },
     methods: {

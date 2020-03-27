@@ -8,7 +8,9 @@ Axel GAND, Antoine GACHENOT LP2
 
 ### Installation
 
-Pour lancer le projet, exécutez les commandes suivantes dans le dossier GeoQuizz (la 1ère possibilité est fortement conseillé):
+Assurez-vous que le docker fonctionne.
+
+Exécutez les commandes suivantes dans le dossier GeoQuizz (la 1ère possibilité est fortement conseillé) :
 
 > 1ère possibilité :
 

@@ -79,7 +79,7 @@ export default {
                     ville: this.ville,
                     latitude: this.latitude,
                     longitude: this.longitude,
-                    zoom: 12,
+                    zoom: 15,
                     dist: this.dist
                 }
             })

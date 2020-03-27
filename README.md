@@ -8,14 +8,22 @@ Axel GAND, Antoine GACHENOT LP2
 
 ### Installation
 
+Exécutez la commande suivante dans le dossier GeoQuizz :
+
+``` bash
+# Pour installer les dépendances
+npm install
+```
+
+### Lancer projet
+
 Assurez-vous que le docker fonctionne.
 
-Exécutez les commandes suivantes dans le dossier GeoQuizz (la 1ère possibilité est fortement conseillé) :
+Exécutez une des deux commandes suivantes dans le dossier GeoQuizz (la 1ère possibilité est fortement conseillé) :
 
 1. Possibilité 1 :
 
 ``` bash
-# Pour installer les dépendances
 tns preview
 ```
 Puis scannez le QR Code.
@@ -23,7 +31,6 @@ Puis scannez le QR Code.
 2. Possibilité 2 :
 
 ``` bash
-# Pour installer les dépendances
 tns run android
 ```
 

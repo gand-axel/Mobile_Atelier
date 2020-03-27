@@ -3,6 +3,7 @@ hooks/
 !hooks/after-createProject/*.js
 node_modules/
 platforms/
+package-lock.json
 
 # NativeScript Template
 *.js.map

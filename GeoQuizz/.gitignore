@@ -4,6 +4,8 @@ hooks/
 node_modules/
 platforms/
 package-lock.json
+.update_backup
+.vscode
 
 # NativeScript Template
 *.js.map

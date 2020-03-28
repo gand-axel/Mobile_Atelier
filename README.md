@@ -34,4 +34,14 @@ Puis scannez le QR Code.
 tns run android
 ```
 
-PS : Avec la seconde possibilité, il se peut que vous rencontrez une erreur avec le ListPicker situé dans le component Photo.vue.
+Avec la seconde possibilité, il se peut que vous rencontrez une erreur avec le ListPicker situé dans le component Photo.vue.
+
+### Se connecter
+
+Utilisez un compte déjà créé :
+
+Adresse mail :
+> user@user.com
+
+Mot de passe :
+> user
